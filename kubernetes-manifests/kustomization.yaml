@@ -1,39 +1,63 @@
-# Copyright 2022 Google LLC
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
+# Use all manifests in this folder (Deployments + Services etc.)
 resources:
- - adservice.yaml
- - cartservice.yaml
- - checkoutservice.yaml
- - currencyservice.yaml
- - emailservice.yaml
- - frontend.yaml
-# - loadgenerator.yaml # During development, the loadgenerator module inside skaffold.yaml will be used.
- - paymentservice.yaml
- - productcatalogservice.yaml
- - recommendationservice.yaml
- - shippingservice.yaml
-# components:
-# - ../kustomize/components/cymbal-branding
-# - ../kustomize/components/google-cloud-operations
-# - ../kustomize/components/memorystore
-# - ../kustomize/components/network-policies
-# - ../kustomize/components/alloydb
-# - ../kustomize/components/shopping-assistant
-# - ../kustomize/components/spanner
-# - ../kustomize/components/container-images-tag
-# - ../kustomize/components/container-images-tag-suffix
-# - ../kustomize/components/container-images-registry
+  - adservice.yaml
+  - cartservice.yaml
+  - checkoutservice.yaml
+  - currencyservice.yaml
+  - emailservice.yaml
+  - frontend.yaml
+  - loadgenerator.yaml
+  - paymentservice.yaml
+  - productcatalogservice.yaml
+  - recommendationservice.yaml
+  - redis.yaml
+  - shippingservice.yaml
+
+# Override images from gcr.io to Docker Hub (anvesh35/*)
+images:
+  - name: gcr.io/google-samples/microservices-demo/adservice
+    newName: anvesh35/microservices-demo-adservice
+    newTag: latest
+
+  - name: gcr.io/google-samples/microservices-demo/cartservice
+    newName: anvesh35/microservices-demo-cartservice
+    newTag: latest
+
+  - name: gcr.io/google-samples/microservices-demo/checkoutservice
+    newName: anvesh35/microservices-demo-checkoutservice
+    newTag: latest
+
+  - name: gcr.io/google-samples/microservices-demo/currencyservice
+    newName: anvesh35/microservices-demo-currencyservice
+    newTag: latest
+
+  - name: gcr.io/google-samples/microservices-demo/emailservice
+    newName: anvesh35/microservices-demo-emailservice
+    newTag: latest
+
+  - name: gcr.io/google-samples/microservices-demo/frontend
+    newName: anvesh35/microservices-demo-frontend
+    newTag: latest
+
+  - name: gcr.io/google-samples/microservices-demo/loadgenerator
+    newName: anvesh35/microservices-demo-loadgenerator
+    newTag: latest
+
+  - name: gcr.io/google-samples/microservices-demo/paymentservice
+    newName: anvesh35/microservices-demo-paymentservice
+    newTag: latest
+
+  - name: gcr.io/google-samples/microservices-demo/productcatalogservice
+    newName: anvesh35/microservices-demo-productcatalogservice
+    newTag: latest
+
+  - name: gcr.io/google-samples/microservices-demo/recommendationservice
+    newName: anvesh35/microservices-demo-recommendationservice
+    newTag: latest
+
+  - name: gcr.io/google-samples/microservices-demo/shippingservice
+    newName: anvesh35/microservices-demo-shippingservice
+    newTag: latest
