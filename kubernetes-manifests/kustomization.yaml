@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-# Explicitly include each manifest (no recursion, no "..")
+# Explicitly include each manifest (no recursion)
 resources:
   - adservice.yaml
   - cartservice.yaml
@@ -15,48 +15,48 @@ resources:
   - recommendationservice.yaml
   - shippingservice.yaml
 
-# Rewrite original GCR images to Docker Hub mirrors
+# Rewrite simple image names like "adservice" -> Docker Hub images
 images:
-  - name: gcr.io/google-samples/microservices-demo/adservice
+  - name: adservice
     newName: anvesh35/microservices-demo-adservice
     newTag: latest
 
-  - name: gcr.io/google-samples/microservices-demo/cartservice
+  - name: cartservice
     newName: anvesh35/microservices-demo-cartservice
     newTag: latest
 
-  - name: gcr.io/google-samples/microservices-demo/checkoutservice
+  - name: checkoutservice
     newName: anvesh35/microservices-demo-checkoutservice
     newTag: latest
 
-  - name: gcr.io/google-samples/microservices-demo/currencyservice
+  - name: currencyservice
     newName: anvesh35/microservices-demo-currencyservice
     newTag: latest
 
-  - name: gcr.io/google-samples/microservices-demo/emailservice
+  - name: emailservice
     newName: anvesh35/microservices-demo-emailservice
     newTag: latest
 
-  - name: gcr.io/google-samples/microservices-demo/frontend
+  - name: frontend
     newName: anvesh35/microservices-demo-frontend
     newTag: latest
 
-  - name: gcr.io/google-samples/microservices-demo/loadgenerator
+  - name: loadgenerator
     newName: anvesh35/microservices-demo-loadgenerator
     newTag: latest
 
-  - name: gcr.io/google-samples/microservices-demo/paymentservice
+  - name: paymentservice
     newName: anvesh35/microservices-demo-paymentservice
     newTag: latest
 
-  - name: gcr.io/google-samples/microservices-demo/productcatalogservice
+  - name: productcatalogservice
     newName: anvesh35/microservices-demo-productcatalogservice
     newTag: latest
 
-  - name: gcr.io/google-samples/microservices-demo/recommendationservice
+  - name: recommendationservice
     newName: anvesh35/microservices-demo-recommendationservice
     newTag: latest
 
-  - name: gcr.io/google-samples/microservices-demo/shippingservice
+  - name: shippingservice
     newName: anvesh35/microservices-demo-shippingservice
     newTag: latest
