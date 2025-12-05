@@ -1,11 +1,21 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-# Include ALL yaml manifests in this folder (adservice.yaml, cartservice.yaml, redis-cart.yaml, etc.)
+# Explicitly include each manifest (no recursion, no "..")
 resources:
-  - .   # <-- this is the important part; do NOT list redis.yaml explicitly
+  - adservice.yaml
+  - cartservice.yaml
+  - checkoutservice.yaml
+  - currencyservice.yaml
+  - emailservice.yaml
+  - frontend.yaml
+  - loadgenerator.yaml
+  - paymentservice.yaml
+  - productcatalogservice.yaml
+  - recommendationservice.yaml
+  - shippingservice.yaml
 
-# Override Google Container Registry images with Docker Hub images
+# Rewrite original GCR images to Docker Hub mirrors
 images:
   - name: gcr.io/google-samples/microservices-demo/adservice
     newName: anvesh35/microservices-demo-adservice
